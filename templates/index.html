@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acronym Search & Add</title>
+    <!-- Bootstrap CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Acronym Manager</h1>
+
+    <!-- Search Form -->
+    <form method="GET" action="/search" class="mb-4">
+        <div class="input-group mb-3">
+            <input type="text" name="acronym" class="form-control" placeholder="Search for an acronym" required>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+
+    <!-- Search Result -->
+    {{if .Result}}
+    <div class="alert alert-info">Definition of {{.Acronym}}: {{.Result}}</div>
+    {{else if .Acronym}}
+    <div class="alert alert-danger">Acronym '{{.Acronym}}' not found</div>
+    {{end}}
+
+    <!-- Add Acronym Form -->
+    <h2>Add a new acronym</h2>
+    <form method="POST" action="/add">
+        <div class="mb-3">
+            <label for="newAcronym" class="form-label">Acronym</label>
+            <input type="text" name="newAcronym" id="newAcronym" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="definition" class="form-label">Definition</label>
+            <input type="text" name="definition" id="definition" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Add Acronym</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
